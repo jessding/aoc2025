@@ -1,0 +1,33 @@
+# Build directories
+*/build/
+build/
+
+# Executables
+*.tsk
+*.out
+*.exe
+
+# CMake files
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+*.dir/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Backup / editor files
+*~
+*.swp
+*.swo
+*.tmp
+
+# Logs
+*.log
+
+# Ignore user-specific IDE settings (optional)
+.vscode/
+.idea/
+*.iml
