@@ -12,19 +12,18 @@ int N_TURN_ON = 12;
 vector<int> get_max_joltage(vector<int> bank) {
     // idea: greedy L to R
     // keep a stack of max size N_TURN_ON
-    // for each digit you see, if it's geq top of stack push it and continue
-    // else start popping from top of stack until top not geq cur or you won't be able to reach N_TURN_ON size even if you pushed all remaining
+    // for each digit you see, start popping from top of stack until stack empty or top < cur or you won't be able to reach N_TURN_ON size even if you pushed all remaining
+    // then push cur digit
+    // you can get stacks longer than you need! make sure to resize
     vector<int> stack;
     for (int i = 0; i < bank.size(); i++) {
         int digit = bank[i];
         int remaining = bank.size() - i;
-
         while (!stack.empty()
                && digit > stack.back()
                && stack.size() + remaining > N_TURN_ON) {
             stack.pop_back();
         }
-
         stack.push_back(digit);
     }
 
@@ -60,13 +59,6 @@ int main() {
         std::cout << bank << std::endl;
         vector<int> digits = stoiv(bank);
         vector<int> turned_on = get_max_joltage(digits);
-
-        std::cout << "turned on elements: ";
-        for (const auto& element : turned_on) {
-            std::cout << element << " ";
-        }
-        std::cout << std::endl;
-
         long long max_joltage = ivtoll(turned_on);
         cout << "max joltage " << max_joltage << endl;
         total_joltage += max_joltage;
